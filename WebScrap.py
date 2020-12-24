@@ -8,8 +8,11 @@ URL = "https://stats.espncricinfo.com/ci/engine/records/averages/batting_bowling
 page = requests.get(URL)
 bs = BeautifulSoup(page.content, 'lxml')
 
-t_head = bs.find_all('thead')
-for i, table in enumerate(t_head):
-    rows = table.find_all('th')
-    for row in rows:
-        print(row.get('title'))
+tables = bs.find_all('table', class_='engineTable')
+for table in tables:
+    caption = table.find('caption')
+    if caption != None:
+        if 'batting' in caption.text:
+            th_list = table.find_all('th')
+            for row in th_list:
+                print(row.get('title'))
