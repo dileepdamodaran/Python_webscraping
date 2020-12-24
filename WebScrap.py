@@ -11,4 +11,5 @@ bs = BeautifulSoup(page.content, 'lxml')
 t_head = bs.find_all('thead')
 for i, table in enumerate(t_head):
     rows = table.find_all('th')
-    print(rows)
+    for row in rows:
+        print(row.get('title'))
