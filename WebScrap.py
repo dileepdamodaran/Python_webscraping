@@ -11,8 +11,14 @@ bs = BeautifulSoup(page.content, 'lxml')
 tables = bs.find_all('table', class_='engineTable')
 for table in tables:
     caption = table.find('caption')
+
     if caption != None:
+        print(caption.text)
+
         if 'batting' in caption.text:
+            captionText = caption.text
+            endIndx = captionText.index('batting')
+            print(captionText[:endIndx])
             th_list = table.find_all('th')
             for row in th_list:
                 print(row.get('title'))
