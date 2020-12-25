@@ -24,5 +24,12 @@ class IPLTeamStat:
                     endIndx = captionText.index('batting')
                     print(captionText[:endIndx])
                     th_list = table.find_all('th')
-                    for row in th_list:
-                        print(row.get('title'))
+                    tr_list = table.find_all('tr', class_='data1')
+                    # for row in th_list:
+                    # print(row.get('title'))
+                    for tr in tr_list:
+                        td_list = tr.find_all('td')
+                        for td in td_list:
+                            print(td.text)
+                if 'bowling' in caption.text:
+                    captionText = caption.text
